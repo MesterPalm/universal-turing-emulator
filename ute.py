@@ -57,6 +57,7 @@ def calculate(m_configs, initial_m_config, tape):
     tape_pointer=0
     while True:
         print(m_config)
+        print(tape)
         m_config, tape_pointer, tape = move(m_config, m_configs, tape_pointer, tape)
     print(tape)
 
@@ -84,5 +85,5 @@ if __name__ == "__main__":
                             "1":{"operations":["R","R"],"final-m":"f"},
                             "0":{"operations":["R","R"],"final-m":"f"}}
                 }
-    tape = " "*1000
+    tape = " "*1000000
     calculate(m_configs, "b", tape)
