@@ -11,6 +11,10 @@ aproximate syntax/notation for a program as Turing uses in his paper.
 ## Dependencies
 * a Python interpreter
 
+## To Do
+* Format printing for terminal
+* Expand syntax with new keywords
+
 ## Further reading
 Link to Turings paper wich, wich was the primary basis for research when creating the project
 [https://www.cs.virginia.edu/~robins/Turing_Paper_1936.pdf]
