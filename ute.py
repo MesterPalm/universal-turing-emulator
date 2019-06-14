@@ -84,11 +84,11 @@ def calculate(m_configs, initial_m_config, tape):
         m_config, tape_pointer, tape = move(m_config, m_configs, tape_pointer, tape)
 
 if __name__ == "__main__":
-    m_configs = {"b" : {"None"  :{"operations":["P0"],"final-m":"b"},
+    p1_m_configs = {"b" : {"None"  :{"operations":["P0"],"final-m":"b"},
                         "0"     :{"operations":["R","R","P1"],"final-m":"b"},
                         "1"     :{"operations":["R","R","P0"],"final-m":"b"}}}
 
-    m_configs = {   "b" : {"None":{"operations":["Pa","R","Pa","R","P0","R","R","P0","L","L"],"final-m":"o"},
+    p2_m_configs = {   "b" : {"None":{"operations":["Pa","R","Pa","R","P0","R","R","P0","L","L"],"final-m":"o"},
                             "1":{"operations":["Pa","R","Pa","R","P0","R","R","P0","L","L"],"final-m":"o"},
                             "0":{"operations":["Pa","R","Pa","R","P0","R","R","P0","L","L"],"final-m":"o"}},
 
@@ -108,4 +108,4 @@ if __name__ == "__main__":
                             "0":{"operations":["R","R"],"final-m":"f"}}
                 }
     tape = " "*1000000
-    calculate(m_configs, "b", tape)
+    calculate(p1_m_configs, "b", tape)
