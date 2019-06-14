@@ -1,3 +1,5 @@
+import time
+
 """
 ***Introduction***
 ------------------
@@ -25,6 +27,29 @@ they relate to the einsheidungsproblem".
 #def parse(program, tape):
 #    return m_configs, symbols
 
+def pprint(tape, tape_pointer, current_m_config, bound=30, ):
+    lower_bound, higher_bound = tape_pointer - bound, tape_pointer + bound
+    out = ""
+    if lower_bound < 0:
+        # TODO handle drawing when at begining of tape
+        print(" "*tape_pointer + current_m_config)
+        print(" "*tape_pointer + "V") 
+        print(tape[0:bound*2])
+        print("-"*bound*2)
+        out += "0" + " "*bound*2 + str(bound*2)
+        print(out)
+    else:
+        print(" "*bound + current_m_config)
+        print(" "*bound + "V")
+        print(tape[lower_bound:higher_bound])
+        print("-"*bound*2)
+        out = str(lower_bound) + " "*bound*2 + str(higher_bound)
+        print(out)
+        
+    """
+    pretty print tape and state
+    """
+    pass
 
 def move(current_m_config, m_configs, tape_pointer, tape):
     scanned_symbol = tape[tape_pointer]
@@ -56,10 +81,9 @@ def calculate(m_configs, initial_m_config, tape):
     m_config = initial_m_config
     tape_pointer=0
     while True:
-        print(m_config)
-        print(tape)
+        pprint(tape, tape_pointer, m_config)
+        time.sleep(0.1)
         m_config, tape_pointer, tape = move(m_config, m_configs, tape_pointer, tape)
-    print(tape)
 
 if __name__ == "__main__":
     m_configs = {"b" : {"None"  :{"operations":["P0"],"final-m":"b"},
