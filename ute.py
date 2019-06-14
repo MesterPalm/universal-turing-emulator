@@ -27,24 +27,22 @@ they relate to the einsheidungsproblem".
 #def parse(program, tape):
 #    return m_configs, symbols
 
-def pprint(tape, tape_pointer, current_m_config, bound=30, ):
+def pprint(tape, tape_pointer, current_m_config, bound=30):
     lower_bound, higher_bound = tape_pointer - bound, tape_pointer + bound
     out = ""
     if lower_bound < 0:
-        # TODO handle drawing when at begining of tape
-        print(" "*tape_pointer + current_m_config)
-        print(" "*tape_pointer + "V") 
-        print(tape[0:bound*2])
-        print("-"*bound*2)
-        out += "0" + " "*bound*2 + str(bound*2)
-        print(out)
+        # Handle drawing when close to begining of tape
+        lower_bound = 0
+        higher_bound = bound*2
     else:
-        print(" "*bound + current_m_config)
-        print(" "*bound + "V")
-        print(tape[lower_bound:higher_bound])
-        print("-"*bound*2)
-        out = str(lower_bound) + " "*bound*2 + str(higher_bound)
-        print(out)
+        tape_pointer = bound
+       
+    out += " "*tape_pointer + current_m_config
+    out += "\n" + " "*tape_pointer + "V"
+    out += "\n"+str(tape[lower_bound:higher_bound])
+    out += "\n"+"-"*bound*2
+    out += "\n" + str(lower_bound) + " "*bound*2 + str(higher_bound)
+    print(out)
         
     """
     pretty print tape and state
@@ -82,7 +80,7 @@ def calculate(m_configs, initial_m_config, tape):
     tape_pointer=0
     while True:
         pprint(tape, tape_pointer, m_config)
-        time.sleep(0.1)
+        time.sleep(0.15)
         m_config, tape_pointer, tape = move(m_config, m_configs, tape_pointer, tape)
 
 if __name__ == "__main__":
